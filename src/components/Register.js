@@ -1,5 +1,8 @@
 import React  from  'react';
-const  axios  = require("../api/api");
+import { thisTypeAnnotation } from '@babel/types';
+import axios from 'axios';
+
+axios.defaults.baseURL ="http://localhost:4000"
 
 class Register extends React.Component{ 
       
@@ -16,10 +19,25 @@ class Register extends React.Component{
              }
 
  RegisterUser = ()=>{
-     axios.post('/User/make_user',{
-          name
-     });
+      axios.post('/User/make_user',{
+           name:this.state.name,
+           email:this.state.email,
+           password:this.state.password,
+           funds:this.state.funds,
+           dateJoined:this.state.dateJoined
+      }).then(res=>{console.log(res)})
+      .catch(err=>{console.log(err)})
 
+}
+
+changeHandler=e=>{
+     var name =  e.target.name;
+     var value =  e.target.value;          
+     this.setState({
+                    [name]:value
+               })
+
+     
 }
 
      render(){
@@ -33,31 +51,31 @@ class Register extends React.Component{
                                       Register To Bety:)
                             </div>
                             </h2>
-                            <form className="ui large form">
+                            <form className="ui large form" method="post" >
                                   <div className="ui stacked segment">
                                   <div className="field">
                                        <div className="ui left icon input">
                                        <i class="user icon"></i>
-                                      <input type="text" name="name" placeholder="Enter your name"/>
+                                      <input type="text" name="name" placeholder="Enter your name" onChange={this.changeHandler} />
                                        </div>
                                       </div>
 
                                       <div className="field">
                                         <div className="ui left icon input">
                                         <i class="user icon"></i>
-                                      <input type="text" name="email" placeholder="Enter Emai"></input>
+                                      <input type="text" name="email" placeholder="Enter Emai" onChange={this.changeHandler} />
                                         </div>
                                       </div>
                                       <div className="field">
                                        <div className="ui left icon input">
                                        <i class="lock icon"></i>
-                                      <input type="password" name="password" placeholder="Enter Password"/>
+                                      <input type="password" name="password" placeholder="Enter Password" onChange={this.changeHandler}/>
                                        </div>
                                       </div>
                                       <div className="field">
                                        <div className="ui left icon input">
                                        <i class="lock icon"></i>
-                                      <input type="password" name="password2" placeholder="Confirm Password" />
+                                      <input type="password" name="password2" placeholder="Confirm Password" onChange={this.changeHandler}  />
                                        </div>
                                       </div>
                                       <div onClick={this.RegisterUser} class="ui fluid large teal submit button">Register</div>
