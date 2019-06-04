@@ -1,34 +1,33 @@
 import React  from 'react';
 import axios from 'axios';
 import {Link,Redirect}  from 'react-router-dom';
-
 import Cookies from '../api/cookies';
 
 axios.defaults.baseURL ="http://localhost:4000";
 
 class  Login extends React.Component {
 
-    constructor(props){
+constructor(props){
         super(props)
         this.state={redirect:false,email:'',password:''}
 
     }
 
 LogIn=()=>{
-   axios.post('/User/login',{
+   axios.post('/Contract/login',{
        email:this.state.email,
        password:this.state.password
    }).then(res=>{
-        Cookies.set('password',res.data.token,{expires:1})
-        console.log(Cookies.get('password'))
-        //this.props.history.push("/");
-
-}).catch(err=> console.log(err))
+ Cookies.set('password',res.data.token,{expires:1})
+ console.log(Cookies.get('password'))
+ this.props.history.push("/Admin");
+}).catch(err=> console.log("err"))
 }
 
 changeHandler=e=>{
     var name =  e.target.name;
-    var value =  e.target.value;          
+    var value =  e.target.value;      
+    console.log(name)    
     this.setState({
                    [name]:value
               })
@@ -43,7 +42,7 @@ changeHandler=e=>{
                 <div className="column">
                 <h2>
                   <div className="Content">
-                            Welcome To Bety:)
+                            Admin Login Power To you!
                   </div>
                   </h2>
                   <form className="ui large form">
@@ -61,7 +60,6 @@ changeHandler=e=>{
                              </div>
                             </div>
                             <div class="ui fluid large teal submit button" onClick={this.LogIn}>Login</div>
-                            <Link to="/Register" style={{marginTop:'12px'}} className="ui fluid large blue submit button"> Register</Link>
                         </div>
                         <div class="ui error message"></div>
 
