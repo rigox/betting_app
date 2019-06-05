@@ -1,14 +1,28 @@
 import React from 'react';
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Image, Modal ,Form, Checkbox} from 'semantic-ui-react'
+import axios from 'axios';
+axios.defaults.baseURL ="http://localhost:4000";
 
 class ModalWindow extends React.Component{
 
  constructor(props){
       super(props);
       this.state={
-          open:props.open
+          open:props.open,
+          _id:'',
+          result:''
       }
  }
+
+
+onChangeHandler=(e)=>{
+      var name =  e.target.name;
+      var value = e.target.value
+      this.setState({
+           [name]:value
+      })
+}
+
 
  componentWillReceiveProps(nextProps,prevProps){
        this.setState({open:nextProps.open})
@@ -16,7 +30,7 @@ class ModalWindow extends React.Component{
  }
 
  closeContract=()=>{
-
+   
     this.setState({open:false})
     console.log(this.state)
 }
@@ -25,13 +39,23 @@ class ModalWindow extends React.Component{
     render(){return(
 <Modal open={this.state.open}>
     <Modal.Header>Close Contract</Modal.Header>
-    <Modal.Content image>
-      <Image wrapped size='medium' src='https://react.semantic-ui.com/images/avatar/large/rachel.png' />
+    <Modal.Content>
       <Modal.Description>
         <Header>Make Sure to Enter Correct Contract ID</Header>
       </Modal.Description>
-      <input   type="text" name="_id"/>
-      <button onClick={this.closeContract} >Close Contract</button>
+      <Form>
+    <Form.Field>
+      <label>Enter Contract ID</label>
+      <input placeholder='Contract ID' type='text' name="_id" onChange={this.onChangeHandler} />
+    </Form.Field>
+    <Form.Field>
+      <label>Enter Winner</label>
+      <input placeholder='Enter Winner of Contest' type="text" name="result"  onChange={this.onChangeHandler} />
+    </Form.Field>
+    <Button onClick={this.closeContract} type='submit'>Submit</Button>
+  </Form>
+
+
     </Modal.Content>
   </Modal>
   )
