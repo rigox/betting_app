@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import {Form,Button,Checkbox,Grid,Image} from "semantic-ui-react";
 import axios from 'axios';
+import Cookies from '../../api/cookies';
 axios.defaults.baseURL ="http://localhost:4000"
 
 
@@ -19,6 +20,7 @@ class Make_contract extends React.Component{
 
 
 createContract=()=>{
+   const config  ={headers:{"Authorization":"Bearer " + Cookies.get("password")}}
     this.setState({
         terms: [ this.state.option1,this.state.option2]
            })
@@ -27,7 +29,7 @@ createContract=()=>{
           name:this.state.name,
           terms:this.state.terms,
           description: this.state.description          
-      })
+      },config)
       .then(res=>console.log(res.data))
       .catch(err=>console.log(err))
 }

@@ -4,6 +4,7 @@ import Header from './Header';
 import Contract from './Contract';
 import User from './User';
 import Make_contracts from './Make_contract';
+import  Cookies from '../../api/cookies';
 axios.defaults.baseURL ="http://localhost:4000";
 
 class Admin extends React.Component{
@@ -13,13 +14,23 @@ class Admin extends React.Component{
      }
 
 componentDidMount(){
-  axios.get('/Contract/fetch_contracts')
+
+  const config = {headers:{"Authorization":"Bearer " + Cookies.get("password") }}
+  console.log(config)
+  axios.get('/Contract/fetch_contracts',config)
   .then(res=>{
     this.setState({contracts:res.data})
      console.log(res.data)
 })
   .catch(err=>console.log(err))
+
+   axios.get("User/fetch_users")
+      .then(res=>this.setState({users:res.data}))
+      .catch(err=>console.log(err))
+
 }
+
+
 
 
  helper=(e)=>{
@@ -33,7 +44,7 @@ renderComponent=()=>{
            return <Contract  contracts={this.state.contracts} />
      }
      if(temp=="Users"){
-           return <User/>
+           return <User  users={this.state.users}/>
      }
      if(temp=="Make_contracts"){
            return <Make_contracts />
