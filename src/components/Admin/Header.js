@@ -5,9 +5,8 @@ class Header extends React.Component{
   constructor(props){
        super(props)
        this.state={
-             helper: props.fn
        }
-    this.state.helper("a")
+        
     }
  
 
