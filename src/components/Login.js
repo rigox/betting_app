@@ -20,8 +20,9 @@ LogIn=()=>{
        password:this.state.password
    }).then(res=>{
         Cookies.set('password',res.data.token,{expires:1})
+        Cookies.set("email",this.state.email,{expires:1})
         console.log(Cookies.get('password'))
-        //this.props.history.push("/");
+        this.props.history.push("/Dashboard");
 
 }).catch(err=> console.log(err))
 }

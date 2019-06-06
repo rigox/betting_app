@@ -71,7 +71,7 @@ onChangeHandler=(e)=>{
     </Form.Field>
     <Form.Field>
       <label>Enter Contracts Optoin 2</label>
-      <input placeholder='options' type='text' name="option2" onChange={this.onChangeHandler} />
+      <input placeholder='option 1' type='text' name="option2" onChange={this.onChangeHandler} />
     </Form.Field>
     <Button onClick={this.createContract} className="ui blue button" type='submit'>Create Contract</Button>
   </Form>

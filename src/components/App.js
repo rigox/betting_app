@@ -5,6 +5,7 @@ import AdminLogin  from './AdminLogin';
 import Admin from './Admin/Admin';
 import User from './Admin/User';
 import Contract from './Admin/Contract';
+import  Dashboard  from '../components/User/DashBoard';
 import Make_contract from './Admin/Make_contract'
 import {BrowserRouter,Link,Route} from 'react-router-dom';
 
@@ -24,7 +25,8 @@ class App extends  React.Component{
                     <Route path="/Users" exact  component={User} />   
                     <Route path="/Make_contract" exact  component={Make_contract} />   
                     <Route path="/Contracts" exact  component={Contract} />   
-                    </div> 
+                    <Route path="/Dashboard" exact component={Dashboard} />
+                     </div> 
                     </BrowserRouter>
              )
         }
