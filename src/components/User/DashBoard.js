@@ -19,9 +19,15 @@ class Dashboard extends React.Component{
 componentDidMount(){
     var config  ={headers:{'Authorization':'Bearer '+Cookies.get("password")}}
     axios.get('Contract/fetch_contracts',config)
-.then(res=>console.log(this.setState({contracts:res.data})))
-.catch(err=>console.log(err))
+   .then(res=>console.log(this.setState({contracts:res.data})))
+   .catch(err=>console.log(err))
 
+    axios.get("/User/get_user",{
+    params:{
+        email:Cookies.get("email")
+    }})
+    .then(res=>{this.setState({user:res.data})})
+    .catch(err=>console.log((err)))
 }
 
 renderComponent=()=>{
@@ -31,10 +37,8 @@ renderComponent=()=>{
           return <Contract_Section  contracts={this.state.contracts}/>
     }
     if(temp=="Account"){
-          return <Account/>
+          return <Account user={this.state.user}/>
     }
-
-
 }
 
 helper=(e)=>{

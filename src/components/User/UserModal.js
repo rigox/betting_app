@@ -14,7 +14,7 @@ class UserModal extends React.Component{
               _id:props.ID,
               value:'',
             }
-
+       console.log(this.state._id)
     }
    
 
