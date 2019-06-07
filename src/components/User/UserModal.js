@@ -13,20 +13,24 @@ class UserModal extends React.Component{
               terms:props.terms,
               _id:props.ID,
               value:'',
+              amount:0
             }
-       console.log(this.state._id)
     }
    
 
    closeModal=()=>{
       var config  ={headers:{'Authorization':'Bearer '+Cookies.get("password")}}
       axios.post('Contract/join_contract',{
-            email:Cookies.get('email')
+              _id:this.state._id,
+              choice:this.state.value,
+              email:Cookies.get("email"),
+              amount:this.state.amount
       },config)
-            .then()
-            .catch()
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
 
-         this.setState({open:false})
+
+      this.setState({open:false})
    } 
    
    componentWillReceiveProps(nextProps,preProps){
@@ -34,6 +38,11 @@ class UserModal extends React.Component{
                 this.setState({open:nextProps.open})
          }
    }
+
+  changeAmount=(e)=>{
+         var temp =  Number(e.target.value)
+         this.setState({amount:temp})
+  } 
 
 renderOptions=()=>{
          if(this.state.terms.length>0){
@@ -69,7 +78,7 @@ renderOptions=()=>{
                </Form.Group>
                 <Form.Field>
                 <label>How Much will you like  to bet</label>
-                <input placeholder='Enter $ amount' className="samll" type="text" name="result"  />
+                <input placeholder='Enter $ amount' onChange={this.changeAmount} className="small" type="text" name="result"  />
                 </Form.Field>
                 <Button onClick={this.closeModal} type='submit'>Join</Button>
             </Form>
