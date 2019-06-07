@@ -43,11 +43,17 @@ changeHandler=e=>{
           <div className="ui middle aligned center aligned grid">
                 <div className="column">
                 <h2>
-                  <div className="Content">
-                            Welcome To Bety:)
+                  <div className="Content" style={{color:"white"}}>
+                            Welcome To Soccer Bets
+                        
                   </div>
                   </h2>
+            <div className="row">
+            <img  style={{marginTop:'1px'}} className="ui  medium centered rounded   image" src="https://www.wikihow.com/images/thumb/b/b0/Improve-Your-Game-in-Soccer-Step-1-Version-3.jpg/aid15705-v4-728px-Improve-Your-Game-in-Soccer-Step-1-Version-3.jpg">
+</img> 
+            </div>
                   <form className="ui large form">
+   
                         <div className="ui stacked segment">
                             <div className="field">
                               <div className="ui left icon input">

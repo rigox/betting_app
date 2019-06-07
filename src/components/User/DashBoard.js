@@ -44,13 +44,11 @@ renderComponent=()=>{
 helper=(e)=>{
   this.setState({comp:e.target.name})
 }
-
-
      render(){
           return(
                <div>
                      <div class="ui three item menu">
-                     <a  onClick={this.helper} class="active item" name="Contracts">Contracts</a>
+                     <a  onClick={this.helper} class=" item" name="Contracts">Contracts</a>
                      <a onClick={this.helper} class="item" name="Account">Account</a>
                      </div>   
                      {this.renderComponent()} 

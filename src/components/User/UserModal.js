@@ -61,7 +61,10 @@ renderOptions=()=>{
    }
 
    handleChange = (e, { value }) => this.setState({ value })
+   cancel=(e)=>{
+      this.setState({open:false})
 
+  }
 
     render(){
           return(
@@ -80,7 +83,9 @@ renderOptions=()=>{
                 <label>How Much will you like  to bet</label>
                 <input placeholder='Enter $ amount' onChange={this.changeAmount} className="small" type="text" name="result"  />
                 </Form.Field>
-                <Button onClick={this.closeModal} type='submit'>Join</Button>
+                <Button className="blue ui button" onClick={this.closeModal} type='submit'>Join</Button>
+                <Button className="red ui Button" onClick={this.cancel} type='submit'>Cancel</Button>
+
             </Form>
                 </Modal.Content>
             </Modal>

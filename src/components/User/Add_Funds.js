@@ -36,6 +36,10 @@ onChangeHandler=(e)=>{
   })
 }
 
+cancel=(e)=>{
+    this.setState({open:false})
+}
+
   render(){
         return(
             <Modal open={this.state.open}>
@@ -49,6 +53,9 @@ onChangeHandler=(e)=>{
             <input placeholder='Enter $ amount' onChange={this.onChangeHandler} className="small" type="text" name="amount"  />
             </Form.Field>
             <Button onClick={this.closeModal}   className="ui blue button" type='submit'>Add</Button>
+            <Button className="red ui Button" onClick={this.cancel} type='submit'>Cancel</Button>
+                        <Button className="red ui Button" onClick={this.cancel} type='submit'>Cancel</Button>
+
         </Form>
             </Modal.Content>
         </Modal>
