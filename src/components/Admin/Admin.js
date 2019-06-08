@@ -5,7 +5,9 @@ import Contract from './Contract';
 import User from './User';
 import Make_contracts from './Make_contract';
 import  Cookies from '../../api/cookies';
+import {Redirect} from 'react-router-dom';
 axios.defaults.baseURL ="http://localhost:4000";
+
 
 class Admin extends React.Component{
      constructor(props){
@@ -51,13 +53,18 @@ renderComponent=()=>{
      }
 }
 
+
      render(){
+          if(this.state.logout){
+                return <Redirect  to="/"/>
+          }
           return(
                <div>
                <div class="ui three item menu">
                <a  onClick={this.helper} class="active item" name="Contracts">Contracts</a>
                <a onClick={this.helper} class="item" name="Users">View User</a>
                <a  onClick={this.helper}class="item" name="Make_contracts">Make Contract</a>
+               <button onClick={()=>{this.setState({logout:true})}} className="ui red button"></button>
              </div>    
                     <div>
                          {this.renderComponent()}
@@ -70,4 +77,4 @@ renderComponent=()=>{
      }
 }
 
-export default Admin;
+export default Admin
